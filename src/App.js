@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { getVillagers } from './services/villagers';
 
 function App() {
+  const [villagers, setVillagers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getVillagers();
+      setVillagers(data);
+    };
+    fetchData();
+  }, []);
+  console.log(villagers.id);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {villagers.map((vill) => (
+        <>
+          <p key={vill.id}>{vill.personality}</p>
+          <img src={vill.icon_uri} />
+        </>
+      ))}
     </div>
   );
 }
