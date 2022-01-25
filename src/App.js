@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       {villagers.map((vill) => (
         <>
-          <p key={vill.id}>{vill.personality}</p>
+          <p key={vill.id}>{vill.name['name-USen']}</p>
           <img src={vill.icon_uri} />
         </>
       ))}
