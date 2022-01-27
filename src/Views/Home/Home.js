@@ -9,19 +9,23 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getVillagers();
+      const data = await getVillagers(selectedThing);
       setVillagers(data);
       setLoading(false);
     };
     if (loading) {
       fetchData();
     }
-  }, [loading]);
+  }, [loading, selectedThing]);
 
   return (
     <>
       <div>Welcome Home</div>
-      <Form setLoading={setLoading} />
+      <Form
+        setLoading={setLoading}
+        selectedThing={selectedThing}
+        setSelectedThing={setSelectedThing}
+      />
       {loading && <span>Loading...</span>}
       {!loading && <List villagers={villagers} loading={loading} />}
     </>
