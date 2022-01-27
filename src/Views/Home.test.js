@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import Home from './Home/Home';
-import userEvent from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 test('renders welcome home on home page', () => {
   render(<Home />);
@@ -12,5 +12,8 @@ test('renders welcome home on home page', () => {
 
 test('select box works', async () => {
   render(<Home />);
-  //   const select = await screen.findByRole('combobox');
+
+  const dropdown = await screen.findByRole('combobox');
+  userEvent.selectOptions(dropdown, 'Villagers');
+  expect(screen.getByRole('option', { name: /villagers/i }).selected).toBe(true);
 });
