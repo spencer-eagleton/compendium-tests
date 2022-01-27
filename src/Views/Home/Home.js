@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getVillagers } from '../../services/villagers';
 import List from '../../Components/List/List';
+import Form from '../../Components/Form/Form';
 export default function Home() {
   const [villagers, setVillagers] = useState([]);
 
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <>
       <div>Welcome Home</div>
+      <Form />
       <List villagers={villagers} />
     </>
   );
